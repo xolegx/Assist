@@ -1,34 +1,7 @@
 import os
 import webbrowser
 import sys
-import subprocess
-
-import voice
-
-try:
-	import requests		#pip install requests
-except:
-	pass
-
-def browser():
-	'''Открывает браузер заданнный по уполчанию в системе с url указанным здесь'''
-
-	webbrowser.open('https://www.youtube.com', new=2)
-
-
-def game():
-	'''Нужно разместить путь к exe файлу любого вашего приложения'''
-	try:
-		subprocess.Popen('C:/Program Files/paint.net/PaintDotNet.exe')
-	except:
-		voice.speaker('Путь к файлу не найден, проверьте, правильный ли он')
-
-
-def offpc():
-	#Эта команда отключает ПК под управлением Windows
-
-	os.system('shutdown \s')
-	print('пк был бы выключен, но команде # в коде мешает;)))')
+import requests
 
 
 def weather():
@@ -40,18 +13,20 @@ def weather():
 		if not response:
 			raise
 		w = response.json()
-		voice.speaker(f"На улице {w['weather'][0]['description']} {round(w['main']['temp'])} градусов")
-		
+		print(f"На улице {w['weather'][0]['description']} {round(w['main']['temp'])} градусов")
+
 	except:
-		voice.speaker('Произошла ошибка при попытке запроса к ресурсу API, проверь код')
+		print('Произошла ошибка при попытке запроса к ресурсу API, проверь код')
 
 
-def offBot():
-	'''Отключает бота'''
-	sys.exit()
+def about():
+	print('я умею узнавать погоду, говорю сколько время и могу рассказать анекдот')
 
 
-def passive():
-	'''Функция заглушка при простом диалоге с ботом'''
-	pass
+def clock():
+	print('time')
+
+
+def joke():
+	print('finger')
 
