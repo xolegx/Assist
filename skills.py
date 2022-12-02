@@ -2,14 +2,16 @@ import os
 import webbrowser
 import sys
 import requests
+import datetime
 
 
 def weather():
 	'''Для работы этого кода нужно зарегистрироваться на сайте
-	https://openweathermap.org или переделать на ваше усмотрение под что-то другое'''
+	https://openweathermap.org'''
 	try:
-		params = {'q': 'London', 'units': 'metric', 'lang': 'ru', 'appid': 'ключ к API'}
-		response = requests.get(f'https://api.openweathermap.org/data/2.5/weather', params=params)
+		api = '98c27fa540b57e03cb899c3b969886ed'
+		city = 'London'
+		response = requests.get("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&lang=ru&APPID=" + api + "&units=metric")
 		if not response:
 			raise
 		w = response.json()
@@ -20,11 +22,12 @@ def weather():
 
 
 def about():
-	print('я умею узнавать погоду, говорю сколько время и могу рассказать анекдот')
+	print('Я умею узнавать погоду, говорю сколько время и могу рассказать анекдот')
 
 
 def clock():
-	print('time')
+	now = datetime.datetime.now()
+	print("Местное время: " + now.strftime("%H:%M"))
 
 
 def joke():
