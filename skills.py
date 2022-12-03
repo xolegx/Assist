@@ -1,6 +1,3 @@
-import os
-import webbrowser
-import sys
 import requests
 import datetime
 
@@ -9,8 +6,8 @@ def weather():
 	'''Для работы этого кода нужно зарегистрироваться на сайте
 	https://openweathermap.org'''
 	try:
-		api = '98c27fa540b57e03cb899c3b969886ed'
-		city = 'London'
+		api = '98c27fa540b57e03cb899c3b969886ed'   # прошу не использовать часто
+		city = 'Санкт-Петербург'
 		response = requests.get("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&lang=ru&APPID=" + api + "&units=metric")
 		if not response:
 			raise
@@ -31,5 +28,6 @@ def clock():
 
 
 def joke():
-	print('finger')
-
+	re = requests.get("https://geek-jokes.sameerkumar.website/api?format=json")
+	j = re.json()
+	print(j['joke'])
